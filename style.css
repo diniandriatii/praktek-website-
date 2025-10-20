@@ -166,76 +166,72 @@ footer {
   transform: translateY(0);
 }
 
-/* Mode Gelap */
-body.dark {
-  background: #1e1e1e;
-  color: #f1f1f1;
-}
-
-body.dark section {
-  background: #2b2b2b;
-}
-
-body.dark .hero {
-  background: linear-gradient(135deg, #5c5470, #352f44);
-}
-
-body.dark .social-links a {
-  background: #5c5470;
-}
-
-body.dark .btn {
-  background: #5c5470;
-  color: white;
+/* Overlay gelap lembut di belakang popup */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+  animation: fadeInOverlay 0.6s ease;
 }
 
 /* Popup Sambutan */
 .welcome-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.95);
   color: #333;
-  padding: 25px 35px;
+  padding: 30px 40px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  z-index: 9999;
-  animation: fadeInUp 1s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
   font-family: 'Poppins', sans-serif;
+  z-index: 9999;
+  animation: popIn 0.8s ease;
+  max-width: 350px;
 }
 
-/* Mode Gelap */
 body.dark .welcome-popup {
   background: rgba(40, 40, 40, 0.95);
   color: #f9f9f9;
 }
 
-/* Animasi masuk */
-@keyframes fadeInUp {
+/* Animasi popup muncul */
+@keyframes popIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -40%);
+    transform: scale(0.8);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: scale(1);
   }
 }
 
-/* Animasi keluar */
+/* Animasi overlay muncul */
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animasi keluar popup */
 .fade-out {
-  animation: fadeOutDown 1s ease forwards;
+  animation: fadeOutPopup 1s ease forwards;
 }
 
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -40%);
-  }
+.fade-out-overlay {
+  animation: fadeOutOverlay 1s ease forwards;
 }
+
+@keyframes fadeOutPopup {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.9); }
+}
+
+@keyframes fadeOutOverlay {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
